@@ -12,6 +12,14 @@
   </head>
 
   <body>
+
+  <nav class="flex justify-between items-center bg-blue-500 p-4 text-white">
+  <div>
+    <a href="<%= searches_path %>" class="mr-4 hover:text-gray-100">Searches</a>
+    <a href="<%= articles_path %>" class="hover:text-gray-100">Articles</a>
+  </div>
+</nav>
+
     <%= yield %>
   </body>
 </html>
