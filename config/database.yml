@@ -82,7 +82,9 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  # <<: *default
+  # database: realtime_search_engine_production
+  # username: realtime_search_engine
+  # password: <%= ENV["REALTIME_SEARCH_ENGINE_DATABASE_PASSWORD"] %>
   <<: *default
-  database: realtime_search_engine_production
-  username: realtime_search_engine
-  password: <%= ENV["REALTIME_SEARCH_ENGINE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
