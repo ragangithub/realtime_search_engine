@@ -11,7 +11,7 @@
 <%= form_with(url: articles_path, method: :get,data: {controller: "search-form"}) do |form| %>
 
   <div class="mb-4 flex justify-center gap-1">
-    <%= form.text_field :query, class: "border border-gray-300 rounded-l px-4 py-2 w-64", data: {action: "input->search-form#search"} %>
+    <%= form.text_field :query, value: params[:query], class: "border border-gray-300 rounded-l px-4 py-2 w-64", data: {action: "input->search-form#search"} %>
 
     <%= form.submit 'Search', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r" %>
   </div>
