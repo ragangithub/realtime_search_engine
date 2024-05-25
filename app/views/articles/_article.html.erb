@@ -1,2 +1,6 @@
-<div id="<%= dom_id article %>">
+<div id="<%= dom_id article %>" class="bg-white shadow-md rounded-lg p-6 mb-6">
+  <p class="text-lg font-semibold mb-2 text-blue-500"><%= article.name %></p>
+  <div class="mt-4 flex justify-end">
+    <%= link_to "Learn more", article_path(article), class: "text-sm text-blue-500 hover:underline" %>
+  </div>
 </div>
