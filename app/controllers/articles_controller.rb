@@ -3,11 +3,14 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
+   
+
     if query_param.present?
       @articles = Article.where("name ILIKE ?", "%#{params[:query]}%")
     else
       @articles = Article.all
     end
+  
   
   end
 
@@ -73,7 +76,7 @@ class ArticlesController < ApplicationController
       params.fetch(:article, {})
     end
 
-    def query_param
-      params[:query]&.strip
-     end
+   def query_param
+    params[:query]&.strip
+   end
 end
