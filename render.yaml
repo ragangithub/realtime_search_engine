@@ -1,17 +1,17 @@
 databases:
   - name: realtime_search_engine
     databaseName: realtime_search_engine_production
-    user: mysite
+    user: realtime_search_engine_production_user
     plan: free
 
 services:
   - type: web
-    name: mysite
+    name: realtime_search_engine_production
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
     # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
-    startCommand: "bundle exec rails server"
+    startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
