@@ -6,6 +6,19 @@ class ArticlesController < ApplicationController
    
 
     if query_param.present?
+
+      query = params[:query]
+      latest_search = Search.order(created_at: :desc).first
+  
+      if query.length > 3
+        if latest_search && query.start_with?(latest_search.query)
+          # Update the existing latest search record
+          latest_search.update(query: query)
+        else
+          # Create a new search record
+          Search.create(query: query,user: current_user)
+        end
+      end
       @articles = Article.where("name ILIKE ?", "%#{params[:query]}%")
     else
       @articles = Article.all
@@ -79,4 +92,16 @@ class ArticlesController < ApplicationController
    def query_param
     params[:query]&.strip
    end
+
+   def save_search
+    Search.create(query: query_param, user: current_user)   
+  end
+
+
+  def valid_search?
+    return true if recent_search.blank?
+    query_param_length = query_param.to_s.length
+    !recent_search.query.include?(query_param) || recent_search.query.length < query_param_length
+   
+  end
 end
