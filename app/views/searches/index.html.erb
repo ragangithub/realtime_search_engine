@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="my-6 px-6 text-center" >Analytics</h1>
+
+<div id="searches" class="my-6 px-6 mb-4">
+  <% @searches.each do |search| %>
+    <%= render search %>
+    
+  <% end %>
+</div>
+
+

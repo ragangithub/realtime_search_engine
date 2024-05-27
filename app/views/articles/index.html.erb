@@ -1,0 +1,27 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Articles" %>
+<h1 class="text-3xl font-bold mb-4 text-center">Real Time Search Engine</h1>
+
+
+
+<%= form_with(url: articles_path, method: :get,data: {controller: "search-form"}) do |form| %>
+
+  <div class="mb-4 flex justify-center gap-1">
+    <%= form.text_field :query, value: params[:query], class: "border border-gray-300 rounded-l px-4 py-2 w-64", data: {action: "input->search-form#search"} %>
+
+    <%= form.submit 'Search', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r" %>
+  </div>
+<% end %>
+
+
+<div class="my-6 px-6">
+  <% @articles.each do |article| %>
+    <%= render partial: "article", locals: { article: article } %>
+  <% end %>
+</div>
+
+</div>
